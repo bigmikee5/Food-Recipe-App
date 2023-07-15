@@ -4,10 +4,12 @@ const container = document.querySelector(".container");
 let searchQuery = "";
 const APP_ID = "c73d53c1";
 const APP_KEY = "4a59d181efdbf8e38d32cd9c74b1ba58";
+const loader = document.querySelector("#preloader");
 
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   searchQuery = e.target.querySelector("input").value;
+  showPreloader(); // show the preloader
   fetchAPI();
 });
 
@@ -18,7 +20,12 @@ async function fetchAPI() {
   const data = await response.json();
 
   //   updating the data in the UI
-  showRecipe(data.hits);
+  if (data.hits.length > 0) {
+    showRecipe(data.hits);
+  } else {
+    showNoResultsMessage();
+  }
+  hidePreloader(); // Hide the preloader
   console.log(data);
 }
 
@@ -51,4 +58,19 @@ function showRecipe(results) {
   `;
   });
   searchResultDiv.innerHTML = recipes;
+}
+
+// message for no results found
+function showNoResultsMessage() {
+  container.classList.add("initial");
+  searchResultDiv.innerHTML = "<p>No recipe found</p>";
+}
+
+// Adding Preloader
+function showPreloader() {
+  loader.style.display = "block";
+}
+
+function hidePreloader() {
+  loader.style.display = "none";
 }

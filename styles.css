@@ -54,8 +54,8 @@ form input {
   display: inline-block;
 }
 form ion-icon {
-  width: 9%;
-  font-size: 3rem;
+  width: 6%;
+  font-size: 2.5rem;
   margin: -10.8px;
   color: rgb(75, 75, 75);
 }
@@ -111,4 +111,20 @@ form ion-icon {
 span {
   font-family: "poppins";
   font-weight: lighter;
+}
+
+#preloader {
+  background: #000 url(./preloader.png) no-repeat center center;
+  background-size: 15%;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  display: none;
+}
+
+.initial {
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
 }
